@@ -1,20 +1,29 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
+import 'package:tutorial1/views/mainViewChilds/goals.dart';
+import 'package:tutorial1/views/mainViewChilds/home.dart';
 
 class BottomNavigationState extends ChangeNotifier {
-  int _selected = 0;
+  int _selected = 1;
+  PageController _pageController;
 
-  List<String>  routes = [
-    'settings',
-    'home',
-    'goals',
-    'cash'
+  List<Widget>  pages = [
+    Home(),
+    Home(),
+    Goals(),
+    Home()
   ];
 
-  String get selectedRoute  => routes[_selected];
-  int get selectedIndex => _selected;
-  
+  List<Widget> get mainPages  => pages;
+  int get selectedPage => _selected;
+
   void selectItemMenu(int index) {
     _selected = index;
+    _pageController.animateToPage(index, duration: Duration(milliseconds: 200), curve: Curves.easeOut);
     notifyListeners();
+  }
+
+  void setPageController(PageController controller) {
+    _pageController = controller;
   }
 }

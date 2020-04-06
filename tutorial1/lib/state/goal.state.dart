@@ -3,18 +3,20 @@ import 'package:tutorial1/model/goal.model.dart';
 
 class GoalsState extends ChangeNotifier {
   List<Goal> _goals = [];
+  Goal _favorite;
 
   List<Goal> get goals => _goals;
+  Goal get favoriteGoal => _favorite;
 
   void add(Goal goal) {
     _goals.add(goal);
-    // This call tells the widgets that are listening to this model to rebuild.
+    if(goal.favorite) _favorite = goal;
     notifyListeners();
   }
 
   void removeAll() {
     _goals.clear();
-    // This call tells the widgets that are listening to this model to rebuild.
+    
     notifyListeners();
   }
 }

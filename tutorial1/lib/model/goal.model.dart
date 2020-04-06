@@ -6,6 +6,7 @@ class Goal {
   final String name;
   final String description;
   final int price;
+  final bool favorite;
 
-  Goal(this.id, this.name, this.description, this.price);
+  Goal(this.id, this.name, this.description, this.price, this.favorite);
 }

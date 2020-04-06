@@ -16,6 +16,11 @@ Map<int, Color> colorGreen =
 
 final appTheme = ThemeData(
   primarySwatch: MaterialColor(0xFF3EB27A, colorGreen),
+  primaryTextTheme: TextTheme(
+    title: TextStyle(
+      color: Colors.yellow
+    )
+  ),
   textTheme: TextTheme(
     display4: TextStyle(
       fontFamily: 'Corben',

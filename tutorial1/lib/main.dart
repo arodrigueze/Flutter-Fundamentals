@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:tutorial1/state/bottom.navigation.state.dart';
 import 'package:tutorial1/state/goal.state.dart';
+import 'package:tutorial1/views/MainView.dart';
 import 'package:tutorial1/views/logIn.dart';
-import 'package:tutorial1/views/mainView.dart';
 
 import 'common/themes.dart';
 

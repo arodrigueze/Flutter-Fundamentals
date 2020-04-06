@@ -1,65 +1,23 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:tutorial1/common/themes.dart';
 import 'package:tutorial1/state/bottom.navigation.state.dart';
-import 'package:tutorial1/views/summary.dart';
+import 'BottomNavBar.dart';
 
 class MainView extends StatelessWidget {
- 
+  final PageController _pageController = PageController(initialPage: 1);
+
   @override
   Widget build(BuildContext context) {
     var bottomNavigationState = Provider.of<BottomNavigationState>(context);
+    bottomNavigationState.setPageController(_pageController);
+    
     return Scaffold(
-        appBar: AppBar(
-          title: const Text('Child Application'),
-        ),
-        body: MaterialApp(
-          theme: appTheme,
-          initialRoute: '/summary',
-          routes: {
-            '/summary': (context) => SummaryView(),
-          },
-        ),
-        bottomNavigationBar: BottomNavigationBar(
-        items: const <BottomNavigationBarItem>[
-           BottomNavigationBarItem(
-            icon: Icon(Icons.settings),
-            title: Text(''),
+        appBar: AppBar(title: const Text('Kid´s Goealss')),
+        body: PageView(
+          controller: _pageController,
+          children: bottomNavigationState.mainPages
           ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            title: Text(''),
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.list),
-            title: Text(''),
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.monetization_on),
-            title: Text(''),
-          )
-        ],
-        currentIndex: bottomNavigationState.selectedIndex,
-        selectedItemColor: Colors.amber[800],
-        type: BottomNavigationBarType.fixed,
-        onTap: bottomNavigationState.selectItemMenu,
-        ));
-  }
-}
-
-class _MyAppBar extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return SliverAppBar(
-      title: Text('Catalog', style: Theme.of(context).textTheme.display4),
-      floating: true,
-      actions: [
-        IconButton(
-          icon: Icon(Icons.shopping_cart),
-          onPressed: () => Navigator.pushNamed(context, '/'),
-        ),
-      ],
-    );
+        bottomNavigationBar: BottomNavBar());
   }
 }
