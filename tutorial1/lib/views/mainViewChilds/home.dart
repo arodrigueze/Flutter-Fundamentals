@@ -1,22 +1,37 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:tutorial1/views/mainViewChilds/homeChilds/favorite.dart';
+import '../../views/mainViewChilds/homeChilds/favorite.dart';
+import 'homeChilds/HomeHeader.dart';
 
 class Home extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Container(
-        child: Center(
+    return Column(
+      children: <Widget>[
+        HomeHeader(),
+        Container(
+          child: Text(
+            'Welcome',
+             style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20)),
+        ),
+        Flexible(
+          flex: 1,
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            mainAxisSize: MainAxisSize.max,
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: <Widget>[
-              FavoriteView(),
-              Text('Craft beautiful UIs'),
+              Flexible(
+                flex: 2,
+                child: FavoriteView(),
+              ),
+              Flexible(
+                flex: 1,
+                child: FavoriteView(),
+              )
             ],
           ),
         )
-      )
+      ],
     );
   }
 }

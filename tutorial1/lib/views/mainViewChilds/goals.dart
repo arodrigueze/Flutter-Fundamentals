@@ -1,6 +1,5 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:tutorial1/views/mainViewChilds/homeChilds/favorite.dart';
 
 class Goals extends StatelessWidget {
   @override

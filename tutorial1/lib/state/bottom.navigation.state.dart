@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
-import 'package:tutorial1/views/mainViewChilds/goals.dart';
-import 'package:tutorial1/views/mainViewChilds/home.dart';
+import '../views/mainViewChilds/goals.dart';
+import '../views/mainViewChilds/home.dart';
 
 class BottomNavigationState extends ChangeNotifier {
   int _selected = 1;

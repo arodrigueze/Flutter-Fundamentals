@@ -1,7 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:tutorial1/state/bottom.navigation.state.dart';
+import '../state/bottom.navigation.state.dart';
+
 import 'BottomNavBar.dart';
 
 class MainView extends StatelessWidget {
@@ -13,7 +14,7 @@ class MainView extends StatelessWidget {
     bottomNavigationState.setPageController(_pageController);
     
     return Scaffold(
-        appBar: AppBar(title: const Text('Kid´s Goealss')),
+        appBar: AppBar(title: const Text('Kid´s Goals')),
         body: PageView(
           controller: _pageController,
           children: bottomNavigationState.mainPages
