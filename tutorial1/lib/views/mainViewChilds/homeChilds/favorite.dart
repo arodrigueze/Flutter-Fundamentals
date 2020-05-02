@@ -11,27 +11,37 @@ class FavoriteView extends StatelessWidget {
     BuildContext context,
   ) {
     return Flexible(
-      flex: 1,
-      child: Image.asset('assets/images/defaultGoal.jpg', fit: BoxFit.fitWidth),
-      //AssetImage('assets/images/defaultGoal.jpg')
-      /* child: Container(
-         decoration: BoxDecoration(
-           shape: BoxShape.circle,
-           image: DecorationImage(
-             image: AssetImage('assets/images/defaultGoal.jpg')
-           )
-         )
-       )*/
-    );
+        flex: 1,
+        child: Container(
+          margin: EdgeInsets.all(30),
+          decoration: BoxDecoration(
+              color: Colors.black54,
+              borderRadius: BorderRadius.circular(1050),
+              image: DecorationImage(
+                  image: AssetImage('assets/images/defaultGoal.jpg'),
+                  fit: BoxFit.fill)),
+        ));
   }
 
   Widget _getFavoriteGoalData(BuildContext context) {
     var goalsState = Provider.of<GoalsState>(context);
-    print(goalsState.favoriteGoal);
-
     return Flexible(
         flex: 1,
-        child: Text('Goalasdasdas asd qw qw eq we qwe qw e asd asd as das d'));
+        child: Container(
+          margin: EdgeInsets.only(right: 10),
+          child: Column(
+            children: <Widget>[
+              Spacer(flex: 2,),
+              Text('Goal', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20 )),
+              Text(goalsState.favoriteGoal.name, style: TextStyle(fontWeight: FontWeight.normal, fontSize: 15)),
+              Spacer(flex: 1,),
+              Text('Description', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20)),
+              Text(goalsState.favoriteGoal.description, style: TextStyle(fontWeight: FontWeight.normal, fontSize: 15)),
+              Spacer(flex: 2,),
+
+            ],
+          ),
+        ));
   }
 
   @override
@@ -40,10 +50,9 @@ class FavoriteView extends StatelessWidget {
     //var goalsState = Provider.of<GoalsState>(context);
 
     return Container(
-      color: Colors.redAccent,
+      height: 220,
       child: Row(
-        mainAxisSize: MainAxisSize.max,
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        mainAxisAlignment: MainAxisAlignment.start,
         children: <Widget>[
           _getFavoriteGoalImage(context),
           _getFavoriteGoalData(context),

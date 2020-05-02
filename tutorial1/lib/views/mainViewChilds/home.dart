@@ -10,27 +10,19 @@ class Home extends StatelessWidget {
       children: <Widget>[
         HomeHeader(),
         Container(
-          child: Text(
-            'Welcome',
-             style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20)),
-        ),
+            height: 50,
+            child: Center(
+              child: Text('Welcome',
+                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20)),
+            )),
         Flexible(
-          flex: 1,
-          child: Column(
-            mainAxisSize: MainAxisSize.max,
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: <Widget>[
-              Flexible(
-                flex: 2,
-                child: FavoriteView(),
+            flex: 1,
+            child: Container(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: <Widget>[FavoriteView()],
               ),
-              Flexible(
-                flex: 1,
-                child: FavoriteView(),
-              )
-            ],
-          ),
-        )
+            ))
       ],
     );
   }
