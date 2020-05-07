@@ -1,12 +1,10 @@
-import 'package:flutter/material.dart';
-
-@immutable
 class Goal {
   final String id;
   final String name;
   final String description;
-  final int price;
+  final double price;
+  DateTime expectedDate;
   final bool favorite;
 
-  Goal(this.id, this.name, this.description, this.price, this.favorite);
+  Goal(this.id, this.name, this.description, this.price, this.expectedDate, this.favorite);
 }
