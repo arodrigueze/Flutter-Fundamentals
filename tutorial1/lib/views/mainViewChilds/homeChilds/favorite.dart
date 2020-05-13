@@ -3,11 +3,12 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:kidapp/common/linear.progress.bar.dart';
 import 'package:kidapp/state/cash.state.dart';
+import 'package:kidapp/state/requirements.state.dart';
 import 'package:provider/provider.dart';
 import '../../../state/goal.state.dart';
-import '../../../state/bottom.navigation.state.dart';
 
 class FavoriteView extends StatelessWidget {
+  final iconSize = 30.0;
   void _loadDatePicker(context) async {
     var goalsState = Provider.of<GoalsState>(context);
     final DateTime datePicked = await showDatePicker(
@@ -23,17 +24,16 @@ class FavoriteView extends StatelessWidget {
   Widget _getFavoriteGoalImage(
     BuildContext context,
   ) {
-    return Flexible(
-      flex: 1,
-      child: Container(
-        margin: EdgeInsets.all(30),
-        decoration: BoxDecoration(
-          color: Colors.black54,
-          borderRadius: BorderRadius.circular(1050),
-          image: DecorationImage(
-              image: AssetImage('assets/images/defaultGoal.jpg'),
-              fit: BoxFit.fill),
-        ),
+    return Container(
+      margin: EdgeInsets.all(30),
+      width: 150,
+      height: 150,
+      decoration: BoxDecoration(
+        color: Colors.black54,
+        borderRadius: BorderRadius.circular(75),
+        image: DecorationImage(
+            image: AssetImage('assets/images/defaultGoal.jpg'),
+            fit: BoxFit.fill),
       ),
     );
   }
@@ -47,11 +47,17 @@ class FavoriteView extends StatelessWidget {
           children: <Widget>[
             Align(
               alignment: Alignment.centerRight,
-              child: Icon(
-                Icons.star,
-                size: 40,
-                color: Colors.purpleAccent,
+              child: Container(
+                margin: EdgeInsets.only(right: 10),
+                child: Icon(
+                  Icons.star,
+                  size: this.iconSize,
+                  color: Colors.purpleAccent,
+                ),
               ),
+            ),
+            Spacer(
+              flex: 1,
             ),
             Align(
               alignment: Alignment.centerLeft,
@@ -60,11 +66,16 @@ class FavoriteView extends StatelessWidget {
             ),
             Align(
               alignment: Alignment.centerLeft,
-              child: Text(goalsState.favoriteGoal.name,
-                  style: TextStyle(fontWeight: FontWeight.w700, fontSize: 15)),
+              child: Text(
+                goalsState.favoriteGoal.name,
+                style: TextStyle(
+                  fontWeight: FontWeight.w700,
+                  fontSize: 15,
+                ),
+              ),
             ),
             Spacer(
-              flex: 1,
+              flex: 2,
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -77,7 +88,9 @@ class FavoriteView extends StatelessWidget {
                         child: Text(
                           'Ends on',
                           style: TextStyle(
-                              fontWeight: FontWeight.w200, fontSize: 20),
+                            fontWeight: FontWeight.w200,
+                            fontSize: 20,
+                          ),
                         ),
                       ),
                       Align(
@@ -85,26 +98,31 @@ class FavoriteView extends StatelessWidget {
                           child: Consumer<GoalsState>(
                             builder: (context, goal, child) {
                               return Text(
-                                  DateFormat('dd / MM / yyyy')
-                                      .format(goal.favoriteGoal.expectedDate),
-                                  style: TextStyle(
-                                      fontWeight: FontWeight.w700,
-                                      fontSize: 15));
+                                DateFormat('dd / MM / yyyy')
+                                    .format(goal.favoriteGoal.expectedDate),
+                                style: TextStyle(
+                                  fontWeight: FontWeight.w700,
+                                  fontSize: 15,
+                                ),
+                              );
                             },
                           ))
                     ],
                   ),
                 ),
                 IconButton(
-                    icon: Icon(Icons.date_range,
-                        size: 40, color: Colors.purpleAccent),
+                    icon: Icon(
+                      Icons.date_range,
+                      size: this.iconSize,
+                      color: Colors.purpleAccent,
+                    ),
                     onPressed: () {
                       _loadDatePicker(context);
                     })
               ],
             ),
             Spacer(
-              flex: 2,
+              flex: 3,
             ),
           ],
         ),
@@ -116,7 +134,11 @@ class FavoriteView extends StatelessWidget {
   Widget build(BuildContext context) {
     var cashState = Provider.of<CashState>(context);
     var goalsState = Provider.of<GoalsState>(context);
-    return Column(
+    var requirementsState = Provider.of<RequirementsState>(context);
+    print(requirementsState.getRequirements('1').requirementList.length);
+    return Expanded(
+        child: Column(
+      mainAxisAlignment: MainAxisAlignment.start,
       children: <Widget>[
         Container(
           height: 220,
@@ -129,7 +151,47 @@ class FavoriteView extends StatelessWidget {
         ),
         LinearProgressBar(cashState.total, goalsState.favoriteGoal.price)
             .progressBar,
+        Spacer(
+          flex: 1,
+        ),
+        Expanded(
+          flex: 10,
+          child: ListView(
+            children: requirementsState
+                .getRequirementsWidgets(goalsState.favoriteGoal.id),
+          ),
+        ),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: <Widget>[
+            Container(
+              height: 50,
+              width: 110,
+              color: Colors.red,
+              child: RaisedButton(
+                color: Colors.green,
+                textColor: Colors.white,
+                child: Text('See More'),
+                onPressed: () => {print('See more')},
+              ),
+            ),
+            Container(
+              height: 50,
+              width: 110,
+              color: Colors.red,
+              child: RaisedButton(
+                color: Colors.blue,
+                textColor: Colors.white,
+                child: Text('Add Money'),
+                onPressed: () => {print('Add money')},
+              ),
+            ),
+          ],
+        ),
+        Spacer(
+          flex: 1,
+        ),
       ],
-    );
+    ));
   }
 }

@@ -27,7 +27,6 @@ class LinearProgressBar {
               alignment: Alignment.centerLeft,
               child: FractionallySizedBox(
                 widthFactor: this.goalCash / this.totalCash,
-                heightFactor: 0.7,
                 child: Container(
                   decoration: BoxDecoration(
                     color: Colors.black45,

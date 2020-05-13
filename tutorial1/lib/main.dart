@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:kidapp/state/cash.state.dart';
+import 'package:kidapp/state/requirements.state.dart';
 import 'package:provider/provider.dart';
 import 'common/themes.dart';
 import 'state/bottom.navigation.state.dart';
@@ -20,6 +21,7 @@ class MyApp extends StatelessWidget {
       providers: [
         ChangeNotifierProvider(create: (context) => GoalsState()),
         ChangeNotifierProvider(create: (context) => CashState()),
+        ChangeNotifierProvider(create: (context) => RequirementsState()),
         ChangeNotifierProvider(create: (context) => BottomNavigationState()),
       ],
       child: MaterialApp(
