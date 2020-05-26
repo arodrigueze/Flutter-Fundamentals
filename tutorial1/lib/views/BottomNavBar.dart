@@ -1,7 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:kidapp/state/bottom.navigation.state.dart';
 import 'package:provider/provider.dart';
-import '../state/bottom.navigation.state.dart';
+
 
 class BottomNavBar extends StatelessWidget {
   @override
@@ -14,15 +15,19 @@ class BottomNavBar extends StatelessWidget {
             title: Text(''),
           ),
           BottomNavigationBarItem(
+            icon: Icon(Icons.account_balance),
+            title: Text(''),
+          ),
+          BottomNavigationBarItem(
             icon: Icon(Icons.home),
             title: Text(''),
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.list),
+            icon: Icon(Icons.flag),
             title: Text(''),
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.monetization_on),
+            icon: Icon(Icons.notifications_none),
             title: Text(''),
           )
         ],

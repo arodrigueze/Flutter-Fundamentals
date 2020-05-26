@@ -29,7 +29,7 @@ class LogIn extends StatelessWidget {
                 color: Colors.amber,
                 child: Text('Log in'),
                 onPressed: () {
-                  Navigator.pushReplacementNamed(context, '/main');
+                  Navigator.pushNamed(context, '/main');
                 },
               )
             ],

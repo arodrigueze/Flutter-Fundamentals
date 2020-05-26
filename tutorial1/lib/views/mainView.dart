@@ -1,24 +1,24 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:kidapp/state/bottom.navigation.state.dart';
 import 'package:provider/provider.dart';
-import '../state/bottom.navigation.state.dart';
-
 import 'BottomNavBar.dart';
 
 class MainView extends StatelessWidget {
-  final PageController _pageController = PageController(initialPage: 1);
-
+  
   @override
   Widget build(BuildContext context) {
     var bottomNavigationState = Provider.of<BottomNavigationState>(context);
-    bottomNavigationState.setPageController(_pageController);
-    
+
     return Scaffold(
-        appBar: AppBar(title: const Text('Kid´s Goals')),
-        body: PageView(
-          controller: _pageController,
-          children: bottomNavigationState.mainPages
-          ),
-        bottomNavigationBar: BottomNavBar());
+      body: SafeArea(
+        child: PageView(
+          controller: bottomNavigationState.pageController,
+          children: bottomNavigationState.mainPages,
+          onPageChanged: bottomNavigationState.selectPage,
+        ),
+      ),
+      bottomNavigationBar: BottomNavBar(),
+    );
   }
 }

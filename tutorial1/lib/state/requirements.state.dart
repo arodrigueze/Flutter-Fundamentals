@@ -37,39 +37,6 @@ class RequirementsState extends ChangeNotifier {
         orElse: () => Requirements('', []));
   }
 
-  List<Widget> getRequirementsWidgets(String goalId) {
-    return _requirements
-        .firstWhere((element) => element.goalId == goalId)
-        .requirementList
-        .map((e) => Container(
-              margin: EdgeInsets.only(left: 30, top: 15, right: 10),
-              height: 30,
-              child: Row(
-                children: <Widget>[
-                  Align(
-                    alignment: Alignment.center,
-                    child: Container(
-                      margin: EdgeInsets.only(right: 30),
-                      width: 20,
-                      height: 20,
-                      decoration: BoxDecoration(
-                        color: Colors.blue,
-                        borderRadius: BorderRadius.circular(10),
-                      ),
-                    ),
-                  ),
-                  Align(
-                    alignment: Alignment.center,
-                    child: Container(
-                      child: Text(e),
-                    ),
-                  )
-                ],
-              ),
-            ))
-        .toList();
-  }
-
   void add(String goalId, String requirement) {
     final requirements = _requirements.firstWhere(
         (element) => element.goalId == goalId,

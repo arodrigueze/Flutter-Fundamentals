@@ -1,21 +1,27 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
-import '../views/mainViewChilds/goals.dart';
-import '../views/mainViewChilds/home.dart';
+import 'package:kidapp/views/mainViewChilds/goals.dart';
+import 'package:kidapp/views/mainViewChilds/home.dart';
 
 class BottomNavigationState extends ChangeNotifier {
-  int _selected = 1;
-  PageController _pageController;
-
+  int _selected = 2;
+  PageController _pageController = PageController(initialPage: 2);
   List<Widget>  pages = [
-    Home(),
+    Container(),
+    Container(),
     Home(),
     Goals(),
-    Home()
+    Container()
   ];
 
   List<Widget> get mainPages  => pages;
   int get selectedPage => _selected;
+  PageController get pageController => _pageController;
+
+  selectPage(int index) {
+    _selected = index;
+    notifyListeners();
+  }
 
   void selectItemMenu(int index) {
     _selected = index;
@@ -23,7 +29,4 @@ class BottomNavigationState extends ChangeNotifier {
     notifyListeners();
   }
 
-  void setPageController(PageController controller) {
-    _pageController = controller;
-  }
 }

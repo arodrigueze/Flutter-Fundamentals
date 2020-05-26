@@ -1,7 +1,5 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:kidapp/state/goal.state.dart';
-import 'package:provider/provider.dart';
 
 class LinearProgressBar {
   double totalCash, goalCash;
@@ -18,7 +16,7 @@ class LinearProgressBar {
         children: <Widget>[
           Container(
             margin: EdgeInsets.only(left: 30, right: 30),
-            height: 25,
+            height: 20,
             decoration: BoxDecoration(
               color: Colors.cyan,
               borderRadius: BorderRadius.circular(10),
@@ -43,13 +41,13 @@ class LinearProgressBar {
                 margin: EdgeInsets.only(left: 30, top: 10),
                 child: Text('\$' + this.goalCash.toString() + ' of \$' + this.totalCash.toString(),
                     style:
-                        TextStyle(fontWeight: FontWeight.w200, fontSize: 20)),
+                        TextStyle(fontWeight: FontWeight.w200, fontSize: 15)),
               ),
               Container(
                 margin: EdgeInsets.only(right: 30, top: 10),
-                child: Text( ((this.goalCash / this.totalCash) * 100).toString() + '%',
+                child: Text( ((this.goalCash / this.totalCash) * 100).toStringAsFixed(2) + '%',
                     style:
-                        TextStyle(fontWeight: FontWeight.bold, fontSize: 20)),
+                        TextStyle(fontWeight: FontWeight.bold, fontSize: 15)),
               )
             ],
           )

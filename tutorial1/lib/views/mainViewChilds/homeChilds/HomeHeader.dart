@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:kidapp/state/bottom.navigation.state.dart';
 import 'package:provider/provider.dart';
-import '../../../state/goal.state.dart';
 
 class HomeHeader extends StatelessWidget {
   Widget _user(BuildContext context) {
@@ -17,34 +17,41 @@ class HomeHeader extends StatelessWidget {
   Widget _userName(BuildContext context) {
     return Container(
         margin: const EdgeInsets.only(left: 20.0),
-        child: Text('Andres Rodriguez')
-        );
+        child: Text('Andres Rodriguez'));
   }
 
   Widget _notification(BuildContext context) {
-    return Container(
-        margin: const EdgeInsets.only(right: 20.0),
-        child: Icon(
-          Icons.notifications,
-          size: 40,
-          color: Colors.purpleAccent,
-        ));
+    var bottomNavigationState = Provider.of<BottomNavigationState>(context);
+    switch (bottomNavigationState.selectedPage) {
+      case 3:
+        return Container(
+          margin: const EdgeInsets.only(right: 20.0),
+          child: Icon(
+            Icons.add,
+            size: 40,
+            color: Colors.purpleAccent,
+          ),
+        );
+        break;
+      default:
+        return Container();
+    }
   }
 
   @override
   Widget build(BuildContext context) {
-    //var bottomNavigationState = Provider.of<BottomNavigationState>(context);
-    //var goalsState = Provider.of<GoalsState>(context);
-
     return Container(
-      height: 70,
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      child: Column(
         children: <Widget>[
-          _user(context),
-          _userName(context),
-          Spacer(flex: 1),
-          _notification(context),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: <Widget>[
+              _user(context),
+              _userName(context),
+              Spacer(flex: 1),
+              _notification(context),
+            ],
+          )
         ],
       ),
     );

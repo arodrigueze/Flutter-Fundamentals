@@ -1,16 +1,21 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:kidapp/constants/constants.dart';
 import 'package:kidapp/state/cash.state.dart';
 import 'package:kidapp/state/requirements.state.dart';
+import 'package:kidapp/views/goal.images.dart';
 import 'package:provider/provider.dart';
 import 'common/themes.dart';
 import 'state/bottom.navigation.state.dart';
 import 'state/goal.state.dart';
-import 'views/logIn.dart';
 import 'views/mainView.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(
+    AppConstants(
+      child: MyApp(),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {
@@ -32,7 +37,7 @@ class MyApp extends StatelessWidget {
         routes: {
           //'/': (context) => LogIn(),
           '/main': (context) => MainView(),
-          //'/cart': (context) => MyCart(),
+          '/goalImage': (context) => GoalImage(),
         },
       ),
     );
